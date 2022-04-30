@@ -1,26 +1,32 @@
-# proxifier-linux
-proxyfier alternative for linux using redsocks. Proxify all linux applications through SOCKS4/5, HTTP proxy
+# redsocks-scripts
 
-## Installation
+By configuring with `redsocks` and `iptables`, almost all traffic can be proxied on Linux,
+including but not limited to Firefox, OBS, etc.
 
-Install [redsocks](https://github.com/darkk/redsocks#packages).
+I would like to call this a global selective proxy. It is global because you cannot do
+process-wise proxy; it is selective because you can still make some configurations based on things
+such as port.
 
-```
-git clone https://github.com/tazihad/proxifier-linux.git
-cd proxifier-linux
-```
+
+## Prerequisites
+Install [redsocks](http://darkk.net.ru/redsocks/).
+
+I use Arch Linux, and there is an AUR package for redsocks.
+Although I did not look into other distributions of Linux, it should not be hard to find a viable
+way to install redsocks, as it is a relatively popular package.
+
 
 ## Usage
 
-1. Setup redsocks.conf (Example config given)  
-`/etc/redsocks.conf`
-2. Open Terminal and run  
-`sudo ./start-proxifier.sh`
+1. Clone this repository
+2. `cd` into the directoy of the repository you just clone
+3. Configure redsocks by editing `redsocks.conf`
+4. Run any of the shell scripts starting with "launch", you may need root previlege
+5. After exiting the script, do not forget to run `stop.sh` to do cleanup, root previlege may again
+be required
+6. You can also add and edit some scripts to accomplish your goal. Pull requests of fixes and new
+features are welcomed.
 
-Done. [Check IP](https://ifconfig.me/)
 
-3. CTRL+Z to exit first script and flush iptables  
-`sudo ./stop-proxifier.sh`
-
-
-More Information:  [redsocks](https://github.com/darkk/redsocks), [superuser](https://superuser.com/a/1402071), [crosp.net](https://crosp.net/blog/administration/install-configure-redsocks-proxy-centos-linux/)
+## Credits
+Scripts in [proxifier-linux](https://github.com/zihaaad/proxifier-linux) provided by zihaaad.

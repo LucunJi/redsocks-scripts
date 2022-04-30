@@ -16,10 +16,15 @@ iptables -t nat -A REDSOCKS -d 240.0.0.0/4 -j RETURN
 # Anything else should be redirected to port 12345
 iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports 12345
 
-# Redirect all HTTP and HTTPS outgoing packets through Redsocks
-iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDSOCKS
-iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDSOCKS
+# ============================== HTTPS ==============================
+iptables -t nat -A FORWARD     -p tcp --dport 443 -j REDSOCKS
+iptables -t nat -A OUTPUT      -p tcp --dport 443 -j REDSOCKS
+iptables -t nat -A PREROUTING  -p tcp --dport 443 -j REDSOCKS
 
-# Defining the following rules in the PREROUTING chain. For redirecting incomming packets to the REDSOCKS chain. 
-iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDSOCKS
-iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDSOCKS
+# ============================== HTTP ==============================
+iptables -t nat -A FORWARD     -p tcp --dport 80 -j REDSOCKS
+iptables -t nat -A OUTPUT      -p tcp --dport 80 -j REDSOCKS
+iptables -t nat -A PREROUTING  -p tcp --dport 80 -j REDSOCKS
+
+# start redsocks
+redsocks -c ./redsocks.conf
