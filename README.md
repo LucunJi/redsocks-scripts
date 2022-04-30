@@ -19,10 +19,10 @@ way to install redsocks, as it is a relatively popular package.
 ## Usage
 
 1. Clone this repository
-2. `cd` into the directoy of the repository you just clone
+2. `cd` into the directory of the repository you just clone
 3. Configure redsocks by editing `redsocks.conf`
-4. Run any of the shell scripts starting with "launch", you may need root previlege
-5. After exiting the script, do not forget to run `stop.sh` to do cleanup, root previlege may again
+4. Run any of the shell scripts starting with "launch", you may need root privilege
+5. After exiting the script, do not forget to run `stop.sh` to do cleanup, root privilege may again
 be required
 6. You can also add and edit some scripts to accomplish your goal. Pull requests of fixes and new
 features are welcomed.
